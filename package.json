@@ -2,7 +2,9 @@
   "name": "@typescript-monorepo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "portfolio:start": "nx serve portfolio"
+  },
   "private": true,
   "devDependencies": {
     "@nx/cypress": "16.8.1",

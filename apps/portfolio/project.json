@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "portfolio/src",
   "projectType": "application",
   "targets": {
