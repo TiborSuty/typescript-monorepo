@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "portfolio:start": "nx serve portfolio",
-    "ui:start" : "nx run ui:storybook"
+    "ui:start": "nx run ui:storybook"
   },
   "private": true,
   "devDependencies": {
@@ -56,6 +56,7 @@
     "@swc/helpers": "~0.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^6.0.8",
     "tslib": "^2.3.0"
   }
 }
