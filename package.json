@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "portfolio:start": "nx serve portfolio",
-    "ui:start": "nx run ui:storybook"
+    "ui:start": "nx run ui:storybook",
+    "graphql-api:start": "nx serve graphql-api"
   },
   "private": true,
   "devDependencies": {

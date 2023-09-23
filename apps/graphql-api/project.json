@@ -1,7 +1,7 @@
 {
-  "name": "qraphql-api",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "qraphql-api/src",
+  "name": "graphql-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "graphql-api/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,12 +11,12 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/qraphql-api",
-        "main": "qraphql-api/src/main.ts",
-        "tsConfig": "qraphql-api/tsconfig.app.json",
-        "assets": ["qraphql-api/src/assets"],
+        "outputPath": "dist/graphql-api",
+        "main": "graphql-api/src/main.ts",
+        "tsConfig": "graphql-api/tsconfig.app.json",
+        "assets": ["graphql-api/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "qraphql-api/webpack.config.js"
+        "webpackConfig": "graphql-api/webpack.config.js"
       },
       "configurations": {
         "development": {},
@@ -27,14 +27,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "qraphql-api:build"
+        "buildTarget": "graphql-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "qraphql-api:build:development"
+          "buildTarget": "graphql-api:build:development"
         },
         "production": {
-          "buildTarget": "qraphql-api:build:production"
+          "buildTarget": "graphql-api:build:production"
         }
       }
     },
@@ -42,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["qraphql-api/**/*.ts"]
+        "lintFilePatterns": ["graphql-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "qraphql-api/jest.config.ts",
+        "jestConfig": "graphql-api/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
