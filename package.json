@@ -5,7 +5,7 @@
   "scripts": {
     "portfolio:start": "nx serve portfolio",
     "ui:start": "nx run ui:storybook",
-    "graphql-api:start": "nx serve graphql-api"
+    "graphql-api:start": "nx serve eshop-api"
   },
   "private": true,
   "devDependencies": {

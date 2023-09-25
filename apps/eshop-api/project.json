@@ -1,7 +1,7 @@
 {
-  "name": "graphql-api",
+  "name": "eshop-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "graphql-api/src",
+  "sourceRoot": "apps/eshop-api/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,12 +11,12 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/graphql-api",
-        "main": "graphql-api/src/main.ts",
-        "tsConfig": "graphql-api/tsconfig.app.json",
-        "assets": ["graphql-api/src/assets"],
+        "outputPath": "dist/apps/eshop-api",
+        "main": "apps/eshop-api/src/main.ts",
+        "tsConfig": "apps/eshop-api/tsconfig.app.json",
+        "assets": ["apps/eshop-api/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "graphql-api/webpack.config.js"
+        "webpackConfig": "apps/eshop-api/webpack.config.js"
       },
       "configurations": {
         "development": {},
@@ -27,14 +27,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "graphql-api:build"
+        "buildTarget": "eshop-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "graphql-api:build:development"
+          "buildTarget": "eshop-api:build:development"
         },
         "production": {
-          "buildTarget": "graphql-api:build:production"
+          "buildTarget": "eshop-api:build:production"
         }
       }
     },
@@ -42,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["graphql-api/**/*.ts"]
+        "lintFilePatterns": ["apps/eshop-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "graphql-api/jest.config.ts",
+        "jestConfig": "apps/eshop-api/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
