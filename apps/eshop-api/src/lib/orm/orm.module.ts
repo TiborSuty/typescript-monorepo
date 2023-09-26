@@ -5,6 +5,7 @@ import { LoadStrategy } from '@mikro-orm/core';
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { BaseRepository } from '../../common/database/base.repository';
+import * as Entities from '../../entities';
 
 const logger = new Logger('MikroORM');
 

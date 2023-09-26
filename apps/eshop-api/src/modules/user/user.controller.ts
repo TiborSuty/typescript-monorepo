@@ -8,6 +8,7 @@ import { GenericPolicyHandler } from '../../lib/casl/policies';
 import { User } from './user.entity';
 import { Action } from '../../lib/casl/casl-ability.factory';
 import { Roles } from '../../common/types/enums/permission.enum';
+import { UserRegistrationDto } from './dtos/user-registration.dto';
 
 @ControllerDecorator('users')
 export class UserController {
