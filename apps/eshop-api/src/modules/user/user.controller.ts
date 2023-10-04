@@ -1,6 +1,13 @@
 import { ControllerDecorator } from '../../common/decorators/controller.decorator';
 import { UserService } from './user.service';
-import { Body, ParseFilePipe, Post, UploadedFile } from '@nestjs/common';
+import {
+  Body,
+  Get,
+  ParseFilePipe,
+  Post,
+  Query,
+  UploadedFile,
+} from '@nestjs/common';
 import { SwaggerDecorator } from '../../common/decorators/swagger-api.decorator';
 import { ApiFile } from '../../common/decorators/api-file.decorator';
 import { CheckPolicies } from '../../lib/casl/policies.decorator';
@@ -9,10 +16,22 @@ import { User } from './user.entity';
 import { Action } from '../../lib/casl/casl-ability.factory';
 import { Roles } from '../../common/types/enums/permission.enum';
 import { UserRegistrationDto } from './dtos/user-registration.dto';
+import { ApiOperation } from '@nestjs/swagger';
+import { ApiPaginatedResponse } from '../../common/swagger/ApiPaginated';
+import { PageOptionsDto } from '../../common/classes/pagination';
+import { Pagination } from '../../lib/pagination';
 
 @ControllerDecorator('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @ApiOperation({ summary: 'Users list' })
+  @ApiPaginatedResponse(User)
+  @Get()
+  getMany(@Query() pageOptionsDto: PageOptionsDto): Promise<Pagination<User>> {
+    // @ts-ignore
+    return 'test';
+  }
 
   @Post('register')
   @SwaggerDecorator({

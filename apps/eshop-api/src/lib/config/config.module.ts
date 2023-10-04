@@ -6,7 +6,6 @@ import {
   database,
   googleOauth,
   jwt,
-  mail,
   rabbit,
   redis,
 } from './configs';
@@ -16,11 +15,11 @@ import { facebookOauth } from './configs/facebook.config';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`env/.env.${process.env.NODE_ENV}`],
+      envFilePath: [`./apps/eshop-api/env/.env`],
       load: [
         // app,
         // jwt,
-        // database,
+        database,
         // mail,
         // redis,
         // cloudinary,
@@ -37,7 +36,7 @@ import { facebookOauth } from './configs/facebook.config';
       },
     }),
   ],
-  providers: [ConfigService],
-  exports: [ConfigService],
+  // providers: [ConfigService],
+  // exports: [ConfigService],
 })
 export class NestConfigModule {}

@@ -6,42 +6,63 @@ import { SqlHighlighter } from '@mikro-orm/sql-highlighter';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 import { BaseRepository } from '../../common/database/base.repository';
 import * as Entities from '../../entities';
+import { User } from '../../entities';
 
 const logger = new Logger('MikroORM');
 
+// @Module({
+//   imports: [
+//     MikroOrmModule.forRootAsync({
+//       imports: [ConfigModule],
+//       useFactory: (configService: ConfigService) => ({
+//         type: 'postgresql',
+//         host: configService.get('database.host'),
+//         port: configService.get<number>('database.port'),
+//         password: configService.get('database.password'),
+//         user: configService.get('database.username'),
+//         dbName: configService.get('database.dbName'),
+//         entities: ['dist/apps/eshop-api/**/*.entity.js'],
+//         entitiesTs: ['apps/eshop-api/src/modules/**/*.entity.ts'],
+//         debug: true,
+//         loadStrategy: LoadStrategy.JOINED,
+//         highlighter: new SqlHighlighter(),
+//         metadataProvider: TsMorphMetadataProvider,
+//         entityRepository: BaseRepository,
+//         allowGlobalContext: true,
+//         registerRequestContext: false,
+//         pool: { min: 2, max: 10 },
+//         logger: logger.log.bind(logger),
+//         migrations: {
+//           path: 'dist/migrations',
+//           pathTs: 'src/migrations',
+//         },
+//       }),
+//       inject: [ConfigService],
+//     }),
+//     MikroOrmModule.forFeature({
+//       entities: [...Object.values(Entities)],
+//     }),
+//   ],
+//   exports: [MikroOrmModule],
+// })
 @Module({
   imports: [
-    MikroOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgresql',
-        host: configService.get('database.host'),
-        port: configService.get<number>('database.port'),
-        password: configService.get('database.password'),
-        user: configService.get('database.username'),
-        dbName: configService.get('database.dbName'),
-        entities: ['dist/**/*.entity.js'],
-        entitiesTs: ['src/**/*.entity.ts'],
-        debug: true,
-        loadStrategy: LoadStrategy.JOINED,
-        highlighter: new SqlHighlighter(),
-        metadataProvider: TsMorphMetadataProvider,
-        entityRepository: BaseRepository,
-        allowGlobalContext: true,
-        registerRequestContext: false,
-        pool: { min: 2, max: 10 },
-        logger: logger.log.bind(logger),
-        migrations: {
-          path: 'dist/migrations',
-          pathTs: 'src/migrations',
-        },
-      }),
-      inject: [ConfigService],
+    MikroOrmModule.forRoot({
+      // entities: ['dist/apps/eshop-api/**/*.entity.js'],
+      entities: ['../../../../../dist/apps/eshop-api/**/*.entity.js'],
+      // entitiesTs: ['apps/eshop-api/src/modules/**/*.entity.ts'],
+      entitiesTs: ['../../modules/**/*.entity.ts'],
+      autoLoadEntities: true,
+      type: 'postgresql',
+      host: '0.0.0.0',
+      port: 5432,
+      password: 'HRASKO',
+      user: 'JANKO',
+      dbName: 'JANKO666',
     }),
-    MikroOrmModule.forFeature({
-      entities: [...Object.values(Entities)],
-    }),
+    // MikroOrmModule.forFeature({
+    //   entities: [User],
+    // }),
   ],
-  exports: [MikroOrmModule],
 })
 export class OrmModule {}

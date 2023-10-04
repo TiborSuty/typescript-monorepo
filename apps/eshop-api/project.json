@@ -14,7 +14,7 @@
         "outputPath": "dist/apps/eshop-api",
         "main": "apps/eshop-api/src/main.ts",
         "tsConfig": "apps/eshop-api/tsconfig.app.json",
-        "assets": ["apps/eshop-api/src/assets"],
+        "assets": ["apps/eshop-api/src/resources/"],
         "isolatedConfig": true,
         "webpackConfig": "apps/eshop-api/webpack.config.js"
       },

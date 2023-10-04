@@ -2,18 +2,10 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { User } from './user.entity';
 import { BaseRepository } from '../../common/database/base.repository';
-import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 import { MikroORM } from '@mikro-orm/core';
 import { I18nService } from 'nestjs-i18n';
-import { ConfigService } from '@nestjs/config';
 import { CloudinaryService } from '../../lib/cloudinary/cloudinary.service';
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { EmailTemplateEnum } from '../../common/types/enums/misc.enum';
-import { capitalize } from '../../common/helpers/capitalize';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
@@ -22,8 +14,6 @@ export class UserService {
     private userRepository: BaseRepository<User>,
     private readonly orm: MikroORM,
     private readonly i18nService: I18nService,
-    private readonly configService: ConfigService,
-    private readonly amqpConnection: AmqpConnection,
     private readonly cloudinaryService: CloudinaryService
   ) {}
 
@@ -51,21 +41,6 @@ export class UserService {
       user.avatar = url;
 
       await em.persistAndFlush(user);
-
-      await this.amqpConnection.publish(
-        this.configService.get<string>('rabbit.exchange'),
-        'send-mail',
-        {
-          template: EmailTemplateEnum.WELCOME_TEMPLATE,
-          replacements: {
-            firstName: capitalize(user.firstName),
-            link: 'example.com',
-          },
-          to: user.email,
-          subject: 'Welcome onboard',
-          from: this.configService.get('mail.senderEmail'),
-        }
-      );
     });
 
     return user;
