@@ -5,7 +5,8 @@
   "scripts": {
     "portfolio:start": "nx serve portfolio",
     "ui:start": "nx run ui:storybook",
-    "eshop-api:start": "nx serve eshop-api"
+    "eshop-api:start": "nx serve eshop-api",
+    "orm": "npx mikro-orm"
   },
   "private": true,
   "devDependencies": {

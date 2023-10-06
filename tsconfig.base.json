@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@typescript-monorepo/nest-core": ["nest-core/src/index.ts"],
       "@typescript-monorepo/ui": ["ui/src/index.ts"]
     }
   },

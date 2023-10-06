@@ -48,17 +48,19 @@ const logger = new Logger('MikroORM');
 @Module({
   imports: [
     MikroOrmModule.forRoot({
-      // entities: ['dist/apps/eshop-api/**/*.entity.js'],
       entities: ['../../../../../dist/apps/eshop-api/**/*.entity.js'],
-      // entitiesTs: ['apps/eshop-api/src/modules/**/*.entity.ts'],
       entitiesTs: ['../../modules/**/*.entity.ts'],
       autoLoadEntities: true,
       type: 'postgresql',
-      host: '0.0.0.0',
-      port: 5432,
+      host: '127.0.0.1',
+      port: 6666,
       password: 'HRASKO',
       user: 'JANKO',
       dbName: 'JANKO666',
+      migrations: {
+        path: 'dist/apps/eshop-api/migrations',
+        pathTs: 'apps/eshop-api/src/migrations',
+      },
     }),
     // MikroOrmModule.forFeature({
     //   entities: [User],
