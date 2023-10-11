@@ -18,7 +18,7 @@ const logger = new Logger('MikroORM');
 //         type: 'postgresql',
 //         host: configService.get('database.host'),
 //         port: configService.get<number>('database.port'),
-//         password: configService.get('database.password'),
+//         password: configService.get('database.password'),TEST
 //         user: configService.get('database.username'),
 //         dbName: configService.get('database.dbName'),
 //         entities: ['dist/apps/eshop-api/**/*.entity.js'],

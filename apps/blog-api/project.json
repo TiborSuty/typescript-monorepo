@@ -14,7 +14,7 @@
         "outputPath": "dist/apps/blog-api",
         "main": "apps/blog-api/src/main.ts",
         "tsConfig": "apps/blog-api/tsconfig.app.json",
-        "assets": ["apps/blog-api/src/assets"],
+        "assets": ["apps/blog-api/src/resources/"],
         "isolatedConfig": true,
         "webpackConfig": "apps/blog-api/webpack.config.js"
       },
@@ -42,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/**/*.ts"]
+        "lintFilePatterns": ["apps/blog-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/jest.config.ts",
+        "jestConfig": "apps/blog-api/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
