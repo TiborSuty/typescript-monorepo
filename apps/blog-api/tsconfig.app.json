@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "target": "es2021"
+  },
+  "exclude": [
+    "jest.config.ts",
+    "blog-api/src/**/*.spec.ts",
+    "blog-api/src/**/*.test.ts"
+  ],
+  "include": [
+    "blog-api/src/**/*.ts"
+  ]
+}
