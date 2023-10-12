@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from '../users/entities/users.entity';
+import { User } from '../users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreatePostInput, UpdatePostInput, PostsArgs } from './dto';
 import { Posts } from './entities/posts.entity';
@@ -10,8 +10,8 @@ export class PostsService {
   constructor(
     @InjectRepository(Posts)
     private readonly postsRepository: Repository<Posts>,
-    @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>
   ) {}
 
   public async findAll(postsArgs: PostsArgs): Promise<Posts[]> {
@@ -68,7 +68,7 @@ export class PostsService {
     return this.postsRepository.save(user);
   }
 
-  private async preloadUserByName(name: string): Promise<Users> {
+  private async preloadUserByName(name: string): Promise<User> {
     const existingUser = await this.usersRepository.findOne({
       where: { name: name },
     });

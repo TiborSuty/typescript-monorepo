@@ -1,20 +1,20 @@
 import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateUserInput, UpdateUserInput, UsersArgs } from './dto';
-import { UsersService } from './users.service';
-import { Users } from './entities/users.entity';
+import { UserService } from './user.service';
+import { User } from './entities/user.entity';
 
 @Resolver()
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UserService) {}
 
-  @Query(() => [Users])
-  public async users(@Args() usersArgs: UsersArgs): Promise<Users[]> {
+  @Query(() => [User])
+  public async users(@Args() usersArgs: UsersArgs): Promise<User[]> {
     return this.usersService.findAll(usersArgs);
   }
 
-  @Query(() => Users)
-  public async user(@Args('id') id: string): Promise<Users> {
+  @Query(() => User)
+  public async user(@Args('id') id: string): Promise<User> {
     const user = await this.usersService.findOneById(id);
     if (!user) {
       throw new NotFoundException(id);
@@ -22,22 +22,22 @@ export class UsersResolver {
     return user;
   }
 
-  @Mutation(() => Users)
+  @Mutation(() => User)
   public async createUser(
-    @Args('createUserInput') createUserInput: CreateUserInput,
-  ): Promise<Users> {
+    @Args('createUserInput') createUserInput: CreateUserInput
+  ): Promise<User> {
     return await this.usersService.create(createUserInput);
   }
 
-  @Mutation(() => Users)
+  @Mutation(() => User)
   public async updateUser(
     @Args('id') id: string,
-    @Args('updateUserInput') updateUserInput: UpdateUserInput,
-  ): Promise<Users> {
+    @Args('updateUserInput') updateUserInput: UpdateUserInput
+  ): Promise<User> {
     return await this.usersService.update(id, updateUserInput);
   }
 
-  @Mutation(() => Users)
+  @Mutation(() => User)
   public async removeUser(@Args('id') id: string): Promise<any> {
     return this.usersService.remove(id);
   }

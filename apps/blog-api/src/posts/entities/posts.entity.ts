@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Users } from '../../users/entities/users.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 @ObjectType()
@@ -17,12 +17,8 @@ export class Posts {
   @Column()
   description: string;
 
-  @OneToMany(
-    () => Users,
-    users => users.posts,
-    {
-      cascade: true,
-    },
-  )
-  users: Users[];
+  @OneToMany(() => User, (users) => users.posts, {
+    cascade: true,
+  })
+  users: User[];
 }

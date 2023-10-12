@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Users } from './entities/users.entity';
-import { UsersService } from './users.service';
+import { User } from './entities/user.entity';
+import { UserService } from './user.service';
 import { UsersArgs } from './dto/users.args';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
@@ -17,7 +17,7 @@ const usersArgs: UsersArgs = {
   limit: 25,
 };
 
-const oneUser: Users = {
+const oneUser: User = {
   id: 1,
   name: 'tony',
   username: 'tony_admin',
@@ -42,7 +42,7 @@ const updateUserInput: UpdateUserInput = {
   password: 'secret',
 };
 
-const userArray: Users = {
+const userArray: User = {
   id: 1,
   name: 'tony',
   username: 'tony_admin',
@@ -53,19 +53,19 @@ const userArray: Users = {
 };
 
 describe('UsersService', () => {
-  let service: UsersService;
-  let repositoryUser: Repository<Users>;
+  let service: UserService;
+  let repositoryUser: Repository<User>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        UsersService,
+        UserService,
         {
           provide: HashingService,
           useClass: BcryptService,
         },
         {
-          provide: getRepositoryToken(Users),
+          provide: getRepositoryToken(User),
           useValue: {
             find: jest.fn().mockResolvedValue(userArray),
             findOne: jest.fn().mockReturnValue(oneUser),
@@ -89,8 +89,8 @@ describe('UsersService', () => {
       ],
     }).compile();
 
-    service = module.get<UsersService>(UsersService);
-    repositoryUser = module.get<Repository<Users>>(getRepositoryToken(Users));
+    service = module.get<UserService>(UserService);
+    repositoryUser = module.get<Repository<User>>(getRepositoryToken(User));
   });
 
   it('should be defined', () => {

@@ -5,20 +5,21 @@ import { Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { UsersArgs } from './dto/users.args';
-import { Users } from './entities/users.entity';
+import { User } from './entities/user.entity';
 import { HashingService } from '../shared/hashing/hashing.service';
+import { RegisterUserInput } from '../auth/inputs/register-user.input';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(
-    @InjectRepository(Users)
-    private readonly usersRepository: Repository<Users>,
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>,
     @InjectRepository(Roles)
     private readonly rolesRepository: Repository<Roles>,
     private readonly hashingService: HashingService
   ) {}
 
-  public async findAll(usersArgs: UsersArgs): Promise<Users[]> {
+  public async findAll(usersArgs: UsersArgs): Promise<User[]> {
     const { limit, offset } = usersArgs;
     return this.usersRepository.find({
       relations: ['roles'],
@@ -27,7 +28,29 @@ export class UsersService {
     });
   }
 
-  public async findOneById(id: string): Promise<Users> {
+  public async existsByCredentials(
+    user: Pick<User, 'email' | 'username'>
+  ): Promise<boolean> {
+    const count = await this.usersRepository.count({
+      where: {
+        username: user.username,
+        email: user.email,
+      },
+    });
+
+    return count > 0;
+  }
+
+  public async findOneByUsername(username: string): Promise<User> {
+    return this.usersRepository.findOneOrFail({
+      where: {
+        username,
+      },
+      relations: ['roles'],
+    });
+  }
+
+  public async findOneById(id: string): Promise<User> {
     const user = await this.usersRepository.findOne({
       where: {
         id: +id,
@@ -41,7 +64,7 @@ export class UsersService {
     return user;
   }
 
-  public async create(createUserInput: CreateUserInput): Promise<Users> {
+  public async create(createUserInput: CreateUserInput): Promise<User> {
     createUserInput.password = await this.hashingService.hash(
       createUserInput.password
     );
@@ -57,7 +80,7 @@ export class UsersService {
   public async update(
     id: string,
     updateUserInput: UpdateUserInput
-  ): Promise<Users> {
+  ): Promise<User> {
     updateUserInput.password = await this.hashingService.hash(
       updateUserInput.password
     );

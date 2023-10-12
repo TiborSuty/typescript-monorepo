@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Users } from '../../users/entities/users.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 @ObjectType()
@@ -13,9 +13,6 @@ export class Roles {
   @Column({ length: 20 })
   name: string;
 
-  @ManyToMany(
-    () => Users,
-    users => users.roles,
-  )
-  users: Users[];
+  @ManyToMany(() => User, (users) => users.roles)
+  users: User[];
 }

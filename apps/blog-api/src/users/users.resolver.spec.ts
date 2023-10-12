@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateUserInput, UpdateUserInput, UsersArgs } from './dto';
 import { UsersResolver } from './users.resolver';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 
 const usersArgs: UsersArgs = {
   offset: 0,
@@ -26,14 +26,14 @@ const updateUserInput: UpdateUserInput = {
 
 describe('UsersResolver', () => {
   let resolver: UsersResolver;
-  let service: UsersService;
+  let service: UserService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersResolver,
         {
-          provide: UsersService,
+          provide: UserService,
           useFactory: () => ({
             findAll: jest.fn().mockResolvedValue({
               name: 'user #1',
@@ -56,7 +56,7 @@ describe('UsersResolver', () => {
       ],
     }).compile();
 
-    service = module.get<UsersService>(UsersService);
+    service = module.get<UserService>(UserService);
     resolver = module.get<UsersResolver>(UsersResolver);
   });
 
@@ -65,14 +65,14 @@ describe('UsersResolver', () => {
   });
 
   describe('users()', () => {
-    it('should call method findAll in UsersService', async () => {
+    it('should call method findAll in UserService', async () => {
       await resolver.users(usersArgs);
       expect(service.findAll).toHaveBeenCalled();
     });
   });
 
   describe('user()', () => {
-    it('should call method findOneById in UsersService id with correct value', async () => {
+    it('should call method findOneById in UserService id with correct value', async () => {
       await resolver.user('anyid');
       expect(service.findOneById).toHaveBeenCalled();
     });
@@ -85,7 +85,7 @@ describe('UsersResolver', () => {
   });
 
   describe('createUser()', () => {
-    it('should call method create in UsersService with correct values', async () => {
+    it('should call method create in UserService with correct values', async () => {
       const createSpy = jest.spyOn(service, 'create');
       await resolver.createUser(createUserInput);
       expect(createSpy).toHaveBeenCalledWith(createUserInput);
@@ -93,7 +93,7 @@ describe('UsersResolver', () => {
   });
 
   describe('updateUser()', () => {
-    it('should call method update in UsersService with correct values', async () => {
+    it('should call method update in UserService with correct values', async () => {
       const updateSpy = jest.spyOn(service, 'update');
       await resolver.updateUser('anyid', updateUserInput);
       expect(updateSpy).toHaveBeenCalledWith('anyid', updateUserInput);
@@ -101,7 +101,7 @@ describe('UsersResolver', () => {
   });
 
   describe('removeUser()', () => {
-    it('should call method remove in UsersService with correct value', async () => {
+    it('should call method remove in UserService with correct value', async () => {
       const deleteSpy = jest.spyOn(service, 'remove');
       await resolver.removeUser('anyid');
       expect(deleteSpy).toHaveBeenCalledWith('anyid');
