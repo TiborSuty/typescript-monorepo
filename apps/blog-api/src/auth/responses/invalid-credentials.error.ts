@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { ErrorResponse } from '../../graphql/interfaces/error-response.interface';
+import { ErrorResponse } from '../../common/types/error-response.interface';
 
 @ObjectType({
   implements: [ErrorResponse],
