@@ -56,7 +56,7 @@ export class AuthService {
         })
       );
     }
-    const returnedUser = await this.userService.save(user);
+    const returnedUser = await this.userService.create(user);
     return either.of(returnedUser);
   }
 
