@@ -3,8 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthUserResponse } from './responses/auth-user.response';
 import { RegisterUserInput } from './inputs/register-user.input';
 import { Profile } from 'passport';
-import { SocialProviderTypes } from './auth.entity';
-import { SocialProviderRepository } from './auth.repository';
+import { Auth, SocialProviderTypes } from './auth.entity';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 import { CredentialsTakenError } from './responses/credentials-taken.error';
 import { InvalidCredentialsError } from './responses/invalid-credentials.error';
@@ -13,13 +12,16 @@ import { SocialAlreadyAssignedError } from './responses/social-already-assigned.
 import { SocialNotRegisteredError } from './responses/social-not-registered.error';
 import { User } from '../users/entities/user.entity';
 import { UserService } from '../users/user.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
-    private readonly socialProviderRepository: SocialProviderRepository
+    @InjectRepository(Auth)
+    private readonly authRepository: Repository<Auth>
   ) {}
 
   async validateCredentials(
@@ -85,7 +87,12 @@ export class AuthService {
     const email = profile.emails![0].value;
     const socialId = profile.id;
 
-    if (await this.socialProviderRepository.existsBySocialId(socialId)) {
+    const count = await this.authRepository
+      .createQueryBuilder('provider')
+      .where('provider.socialId = :socialId', { socialId })
+      .getCount();
+
+    if (count > 0) {
       return either.error(
         new SocialAlreadyAssignedError({
           provider,
@@ -107,10 +114,22 @@ export class AuthService {
       );
     }
 
-    const user = await this.socialProviderRepository.saveProviderAndUser(
-      { username, email, password: randomStringGenerator() },
-      { provider, socialId }
+    const user = this.authRepository.manager.transaction(
+      async (transactionalManager) => {
+        const createdUser = await transactionalManager.create(User, {
+          username,
+          email,
+          password: randomStringGenerator(),
+        });
+        const savedUser = await transactionalManager.save(createdUser);
+        await transactionalManager.save(Auth, {
+          user: savedUser,
+          ...{ provider, socialId },
+        });
+        return savedUser;
+      }
     );
+
     return either.of(user);
   }
 }

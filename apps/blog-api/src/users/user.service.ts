@@ -50,6 +50,14 @@ export class UserService {
     });
   }
 
+  public async findOneBySocialId(socialId: string): Promise<User> {
+    return this.usersRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.socialProviders', 'providers')
+      .where('providers.socialId = :socialId', { socialId })
+      .getOne();
+  }
+
   public async findOneById(id: string): Promise<User> {
     const user = await this.usersRepository.findOne({
       where: {

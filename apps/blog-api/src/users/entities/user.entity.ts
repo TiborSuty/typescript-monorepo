@@ -6,12 +6,14 @@ import {
   ManyToMany,
   JoinTable,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Roles } from '../../roles/entities/roles.entity';
 import { Posts } from '../../posts/entities/posts.entity';
 import { IsEmail, MinLength } from 'class-validator';
 import * as bcrypt from 'bcrypt';
+import { Auth } from '../../auth/auth.entity';
 
 @Entity()
 @ObjectType()
@@ -37,6 +39,9 @@ export class User {
   @MinLength(6)
   @Column({ length: 60 })
   password: string;
+
+  @OneToMany((_type) => Auth, (socialProvider) => socialProvider.user)
+  socialProviders: Auth;
 
   @JoinTable()
   @ManyToMany(() => Roles, (roles) => roles.users, {

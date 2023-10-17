@@ -5,8 +5,9 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { User } from '../user/user.entity';
+
 import { registerEnumType } from '@nestjs/graphql';
+import { User } from '../users/entities/user.entity';
 
 export enum SocialProviderTypes {
   FACEBOOK = 'facebook',
@@ -18,7 +19,7 @@ registerEnumType(SocialProviderTypes, {
 });
 
 @Entity()
-export class SocialProvider {
+export class Auth {
   @PrimaryGeneratedColumn()
   id: number;
 

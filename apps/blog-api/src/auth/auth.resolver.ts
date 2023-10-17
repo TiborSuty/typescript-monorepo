@@ -5,15 +5,15 @@ import { RegisterUserInput } from './inputs/register-user.input';
 import { UseGuards } from '@nestjs/common';
 import { RegisterUserResultUnion } from './results/register-user.result';
 import { LoginUserResultUnion } from './results/login-user.result';
-import { SocialProfile } from '../common/decorators/social-profile.decorator';
-import { SocialAuthGuard } from '../common/guards/social-auth.guard';
 import { Profile } from 'passport';
 import { RegisterSocialInput } from './inputs/register-social.input';
 import { LoginSocialInput } from './inputs/login-social.input';
-import { Input } from '../graphql/args/input.args';
 import { LoginSocialResultUnion } from './results/login-social.result';
 import { RegisterSocialResultUnion } from './results/register-social.result';
-import { ValidateInput } from '../common/decorators/validate-input.decorator';
+import { SocialProfile } from '../shared/decorators/social-profile.decorator';
+import { SocialAuthGuard } from '../shared/guards/social-auth.guard';
+import { Input } from '../shared/graphql/args/input.args';
+import { ValidateInput } from '../shared/decorators/validate-input.decorator';
 
 @Resolver()
 export class AuthResolver {
@@ -21,11 +21,11 @@ export class AuthResolver {
 
   @Mutation((_returns) => [LoginUserResultUnion])
   async login(
-    @Input() input: LoginUserInput,
+    @Input() input: LoginUserInput
   ): Promise<Array<typeof LoginUserResultUnion>> {
     const result = await this.authService.validateCredentials(
       input.username,
-      input.password,
+      input.password
     );
 
     if (result.isError()) {
@@ -39,7 +39,7 @@ export class AuthResolver {
   @ValidateInput()
   @Mutation((_returns) => [RegisterUserResultUnion])
   async register(
-    @Input() input: RegisterUserInput,
+    @Input() input: RegisterUserInput
   ): Promise<Array<typeof RegisterUserResultUnion>> {
     const result = await this.authService.registerUser(input);
 
@@ -55,7 +55,7 @@ export class AuthResolver {
   @Mutation((_returns) => [LoginSocialResultUnion])
   async loginSocial(
     @SocialProfile() profile: Profile,
-    @Input() input: LoginSocialInput,
+    @Input() input: LoginSocialInput
   ): Promise<Array<typeof LoginSocialResultUnion>> {
     const social = await this.authService.loginSocial(profile, input.provider);
 
@@ -71,12 +71,12 @@ export class AuthResolver {
   @Mutation((_returns) => [RegisterSocialResultUnion])
   async registerSocial(
     @SocialProfile() profile: Profile,
-    @Input() input: RegisterSocialInput,
+    @Input() input: RegisterSocialInput
   ): Promise<Array<typeof RegisterSocialResultUnion>> {
     const social = await this.authService.registerSocial(
       profile,
       input.username,
-      input.provider,
+      input.provider
     );
 
     if (social.isError()) {

@@ -18,4 +18,4 @@ import { BcryptService } from '../shared/hashing/bcrypt.service';
     },
   ],
 })
-export class UsersModule {}
+export class UserModule {}

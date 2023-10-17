@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { GraphqlOptions } from './graphql.options';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './users/user.module';
 import { RolesModule } from './roles/roles.module';
 import { PostsModule } from './posts/posts.module';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
@@ -44,7 +44,7 @@ import { join } from 'path';
     GraphQLModule.forRootAsync({
       useClass: GraphqlConfigService,
     }),
-    UsersModule,
+    UserModule,
     RolesModule,
     PostsModule,
   ],

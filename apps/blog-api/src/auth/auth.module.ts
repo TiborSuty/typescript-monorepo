@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { UserModule } from '../user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import jwtConfig from '../config/jwt.config';
 import { JwtStrategy } from './strategy/jwt.strategy';
@@ -12,14 +11,15 @@ import facebookConfig from '../config/facebook.config';
 import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SocialProviderRepository } from './auth.repository';
+import { UserModule } from '../users/user.module';
+import { Auth } from './auth.entity';
 
 @Module({
   imports: [
     ConfigModule.forFeature(jwtConfig),
     ConfigModule.forFeature(googleConfig),
     ConfigModule.forFeature(facebookConfig),
-    TypeOrmModule.forFeature([SocialProviderRepository]),
+    TypeOrmModule.forFeature([Auth]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
