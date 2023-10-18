@@ -6,7 +6,7 @@
     "portfolio:start": "nx serve portfolio",
     "ui:start": "nx run ui:storybook",
     "eshop-api:start": "nx serve eshop-api",
-    "blog-api:start": "nx serve blog-api"
+    "my-blog-api:start": "nx serve my-blog-api"
   },
   "private": true,
   "devDependencies": {
