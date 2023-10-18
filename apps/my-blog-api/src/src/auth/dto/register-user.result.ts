@@ -1,8 +1,7 @@
 import { createUnionType } from '@nestjs/graphql';
-
-import { AuthUserResponse } from '../responses/auth-user.response';
-import { CredentialsTakenError } from '../responses/credentials-taken.error';
-import { InvalidInputError } from '../../common/types/invalid-input.error';
+import { AuthUserResponse } from './auth-user.response';
+import { InvalidInputError } from '../../shared/types/invalid-input.error';
+import { CredentialsTakenError } from './credentials-taken.error';
 
 export const RegisterUserResultUnion = createUnionType({
   name: 'RegisterUserResult',

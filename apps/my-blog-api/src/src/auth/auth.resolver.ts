@@ -83,6 +83,7 @@ export class AuthResolver {
       return [social.value];
     }
 
+    // @ts-ignore
     const authUser = await this.authService.signToken(social.value);
     return [authUser];
   }

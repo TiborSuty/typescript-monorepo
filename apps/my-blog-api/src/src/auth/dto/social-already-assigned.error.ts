@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { SocialProviderTypes } from '../auth.entity';
-import { ErrorResponse } from '../../common/types/error-response.interface';
+import { ErrorResponse } from '../../shared/types/error-response.interface';
 
 @ObjectType({
   implements: [ErrorResponse],

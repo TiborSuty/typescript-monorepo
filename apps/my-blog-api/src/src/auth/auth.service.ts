@@ -59,6 +59,7 @@ export class AuthService {
         })
       );
     }
+    // @ts-ignore
     const returnedUser = await this.userService.create(user);
     return either.of(returnedUser);
   }
