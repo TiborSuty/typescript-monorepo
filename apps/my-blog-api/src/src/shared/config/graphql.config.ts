@@ -6,7 +6,6 @@ import { join } from 'path';
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
   createGqlOptions(): GqlModuleOptions {
-    console.log('GraphqlOptions', join(__dirname, '../../../', 'schema.gql'));
     return {
       autoSchemaFile: join(__dirname, '../../../', 'schema.gql'),
       context: ({ req, res }) => ({ req, res }),
