@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
-  cacheDir: '../node_modules/.vite/portfolio',
+  cacheDir: '../node_modules/.vite/my-blog',
 
   server: {
     port: 4200,

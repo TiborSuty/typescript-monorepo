@@ -6,13 +6,13 @@ import { join } from 'path';
 @Injectable()
 export class GraphqlConfigService implements GqlOptionsFactory {
   createGqlOptions(): GqlModuleOptions {
+    console.log('GraphqlOptions', join(__dirname, '../../../', 'schema.gql'));
     return {
-      // autoSchemaFile: join(process.cwd(), '..', 'schema.graphql'),
+      autoSchemaFile: join(__dirname, '../../../', 'schema.gql'),
       context: ({ req, res }) => ({ req, res }),
       // debug: process.env.NODE_ENV === 'development',
       // playground: process.env.NODE_ENV === 'development',
       driver: ApolloDriver,
-      autoSchemaFile: true,
     };
   }
 }

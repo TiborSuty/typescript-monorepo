@@ -1,7 +1,7 @@
 {
-  "name": "portfolio",
+  "name": "my-blog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "portfolio/src",
+  "sourceRoot": "my-blog/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/portfolio"
+        "outputPath": "dist/my-blog"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "portfolio:build"
+        "buildTarget": "my-blog:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "portfolio:build:development",
+          "buildTarget": "my-blog:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "portfolio:build:production",
+          "buildTarget": "my-blog:build:production",
           "hmr": false
         }
       }
@@ -41,14 +41,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "portfolio:build"
+        "buildTarget": "my-blog:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "portfolio:build:development"
+          "buildTarget": "my-blog:build:development"
         },
         "production": {
-          "buildTarget": "portfolio:build:production"
+          "buildTarget": "my-blog:build:production"
         }
       }
     },
@@ -57,20 +57,20 @@
       "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../coverage/portfolio"
+        "reportsDirectory": "../coverage/my-blog"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["portfolio/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["my-blog/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "portfolio:build"
+        "buildTarget": "my-blog:build"
       }
     }
   },

@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "portfolio:start": "nx serve portfolio",
-    "ui:start": "nx run ui:storybook",
-    "eshop-api:start": "nx serve eshop-api",
+    "my-blog:start": "nx serve my-blog",
     "my-blog-api:start": "nx serve my-blog-api",
-    "my-blog-api:build": "nx build my-blog-api"
+    "my-blog-api:build": "nx build my-blog-api",
+    "ui:start": "nx run ui:storybook",
+    "eshop-api:start": "nx serve eshop-api"
   },
   "private": true,
   "devDependencies": {
@@ -61,10 +61,14 @@
     "vitest": "~0.32.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "@apollo/server": "^4.9.4",
     "@casl/ability": "^6.5.0",
     "@golevelup/nestjs-modules": "^0.7.0",
     "@golevelup/nestjs-rabbitmq": "^4.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@hapi/joi": "^17.1.1",
     "@mikro-orm/cli": "^5.8.3",
     "@mikro-orm/core": "^5.8.3",
