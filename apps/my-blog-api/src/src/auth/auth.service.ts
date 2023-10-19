@@ -15,6 +15,7 @@ import { RegisterUserInput } from './dto/register-user.input';
 import { CredentialsTakenError } from './dto/credentials-taken.error';
 import { SocialNotRegisteredError } from './dto/social-not-registered.error';
 import { SocialAlreadyAssignedError } from './dto/social-already-assigned.error';
+import { HashingService } from '../shared/hashing/hashing.service';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +23,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
     @InjectRepository(Auth)
-    private readonly authRepository: Repository<Auth>
+    private readonly authRepository: Repository<Auth>,
+    private readonly hashingService: HashingService
   ) {}
 
   async validateCredentials(
@@ -30,7 +32,12 @@ export class AuthService {
     password: string
   ): Promise<Either<InvalidCredentialsError, User>> {
     const user = await this.userService.findOneByUsername(username);
-    if (!(await user?.comparePassword(password))) {
+
+    const test = await this.hashingService.compare(password, user.password);
+
+    debugger;
+
+    if (!test) {
       return either.error(
         new InvalidCredentialsError({
           providedUsername: username,

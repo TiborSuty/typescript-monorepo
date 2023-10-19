@@ -1,5 +1,4 @@
 import {
-  BeforeInsert,
   Column,
   Entity,
   JoinTable,
@@ -10,10 +9,10 @@ import {
 } from 'typeorm';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { IsEmail, MinLength } from 'class-validator';
-import * as bcrypt from 'bcrypt';
 import { Role } from '../role/role.entity';
 import { Post } from '../post/post.entity';
 import { Auth } from '../auth/auth.entity';
+
 @Entity()
 @ObjectType()
 export class User {
@@ -50,13 +49,4 @@ export class User {
 
   @ManyToOne(() => Post, (posts) => posts.users)
   posts?: Post;
-
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
-
-  async comparePassword(password: string) {
-    return bcrypt.compare(password, this.password);
-  }
 }

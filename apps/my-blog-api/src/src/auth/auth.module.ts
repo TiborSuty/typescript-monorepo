@@ -13,6 +13,8 @@ import jwtConfig from '../shared/config/jwt.config';
 import googleConfig from '../shared/config/google.config';
 import facebookConfig from '../shared/config/facebook.config';
 import { UserModule } from '../user/user.module';
+import { HashingService } from '../shared/hashing/hashing.service';
+import { BcryptService } from '../shared/hashing/bcrypt.service';
 
 @Module({
   imports: [
@@ -38,7 +40,11 @@ import { UserModule } from '../user/user.module';
     AuthService,
     JwtStrategy,
     GoogleStrategy,
-    FacebookStrategy,
+    // FacebookStrategy,
+    {
+      provide: HashingService,
+      useClass: BcryptService,
+    },
   ],
   exports: [],
 })

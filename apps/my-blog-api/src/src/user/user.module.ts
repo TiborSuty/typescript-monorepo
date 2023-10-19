@@ -17,5 +17,6 @@ import { Role } from '../role/role.entity';
       useClass: BcryptService,
     },
   ],
+  exports: [TypeOrmModule, UserService],
 })
 export class UserModule {}

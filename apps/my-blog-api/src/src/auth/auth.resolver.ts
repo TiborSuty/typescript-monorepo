@@ -28,6 +28,8 @@ export class AuthResolver {
       input.password
     );
 
+    debugger;
+
     if (result.isError()) {
       return [result.value];
     }

@@ -10,6 +10,7 @@ import { RoleModule } from './src/role/role.module';
 import { PostModule } from './src/post/post.module';
 import { join } from 'path';
 import { ApolloDriver } from '@nestjs/apollo';
+import { AuthModule } from './src/auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ApolloDriver } from '@nestjs/apollo';
     UserModule,
     RoleModule,
     PostModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
