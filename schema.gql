@@ -1,0 +1,151 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Role {
+  id: ID!
+  name: String!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  description: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  username: String!
+  email: String!
+}
+
+type InputError {
+  field: String!
+  messages: [String!]!
+}
+
+type Query {
+  users(offset: Int! = 0, limit: Int! = 25): [User!]!
+  user(id: String!): User!
+  findAllRole(skip: Int! = 0, take: Int! = 10): [Role!]!
+  findOneRole(id: String!): Role!
+  posts(offset: Int! = 0, limit: Int! = 25): [Post!]!
+  post(id: String!): Post!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  removeRole(id: String!): Role!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(id: String!, updatePostInput: UpdatePostInput!): Post!
+  login(input: LoginUserInput!): [LoginUserResult!]!
+  register(input: RegisterUserInput!): [RegisterUserResult!]!
+  loginSocial(input: LoginSocialInput!): [LoginSocialResult!]!
+  registerSocial(input: RegisterSocialInput!): [RegisterSocialResult!]!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  username: String!
+  password: String!
+  roles: [String!]
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  username: String
+  password: String
+  roles: [String!]
+}
+
+input CreateRoleInput {
+  name: String!
+}
+
+input CreatePostInput {
+  title: String!
+  description: String!
+  users: [String!]
+}
+
+input UpdatePostInput {
+  title: String
+  description: String
+  users: [String!]
+}
+
+union LoginUserResult = AuthUserResponse | InvalidCredentialsError
+
+type AuthUserResponse {
+  user: User!
+  token: String!
+}
+
+type InvalidCredentialsError implements ErrorResponse {
+  message: String!
+  providedUsername: String!
+}
+
+interface ErrorResponse {
+  message: String!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+union RegisterUserResult = AuthUserResponse | InvalidInputError | CredentialsTakenError
+
+type InvalidInputError implements ErrorResponse {
+  message: String!
+  errors: [InputError!]!
+}
+
+type CredentialsTakenError implements ErrorResponse {
+  message: String!
+  providedUsername: String!
+  providedEmail: String!
+}
+
+input RegisterUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+union LoginSocialResult = AuthUserResponse | SocialNotRegisteredError
+
+type SocialNotRegisteredError implements ErrorResponse {
+  message: String!
+  provider: SocialAuthProviders!
+}
+
+enum SocialAuthProviders {
+  FACEBOOK
+  GOOGLE
+}
+
+input LoginSocialInput {
+  accessToken: String!
+  provider: SocialAuthProviders!
+}
+
+union RegisterSocialResult = AuthUserResponse | SocialAlreadyAssignedError | CredentialsTakenError
+
+type SocialAlreadyAssignedError implements ErrorResponse {
+  message: String!
+  provider: SocialAuthProviders!
+}
+
+input RegisterSocialInput {
+  accessToken: String!
+  provider: SocialAuthProviders!
+  username: String!
+}
