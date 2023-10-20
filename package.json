@@ -7,7 +7,8 @@
     "my-blog-api:start": "nx serve my-blog-api",
     "my-blog-api:build": "nx build my-blog-api",
     "ui:start": "nx run ui:storybook",
-    "eshop-api:start": "nx serve eshop-api"
+    "eshop-api:start": "nx serve eshop-api",
+    "test": "graphql-codegen --config ./apps/my-blog/codegen.ts"
   },
   "private": true,
   "devDependencies": {
@@ -68,6 +69,9 @@
     "@golevelup/nestjs-rabbitmq": "^4.0.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-codegen/typescript-react-apollo": "^4.0.0",
+    "@graphql-codegen/typescript-react-query": "^5.0.0",
+    "@graphql-tools/schema": "^10.0.0",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@hapi/joi": "^17.1.1",
     "@mikro-orm/cli": "^5.8.3",

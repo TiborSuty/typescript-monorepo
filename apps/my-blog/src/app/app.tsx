@@ -1,17 +1,17 @@
-import { gql } from '../__generated__';
-import { useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { GetUsersQuery } from '../__generated__/graphql';
 
 const GET_USERS = gql(`
   query getUsers {
     users {
-      name
-      email
+     id,
+     name,
     }
   }
 `);
 
 export function App() {
-  const { loading, data } = useQuery(GET_USERS);
+  const { loading, data } = useQuery<GetUsersQuery>(GET_USERS);
 
   if (loading) {
     return <div>Loading...</div>;
