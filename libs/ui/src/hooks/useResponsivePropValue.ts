@@ -1,4 +1,6 @@
 import { getValueByDevice } from '../utils/getValueByDevice';
+import { useDevice } from '../components/providers/DeviceProvider/DeviceProvider';
+import { ValueByDevice } from '../types/ValueByDevice';
 
 type PrimitiveValue<T> = T extends ValueByDevice<infer P>
   ? P

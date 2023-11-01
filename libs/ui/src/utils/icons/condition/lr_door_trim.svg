@@ -1,0 +1,56 @@
+<svg
+	width="31"
+	height="40"
+	viewBox="0 0 31 40"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<path
+		d="M17.1956 18.8451L17.3459 15.321C17.3459 15.321 12.8646 13.5125 10.7038 10.7742C10.7132 10.7022 10.7163 10.6303 10.7163 10.5553C10.7163 9.41558 9.65467 8.49182 8.34252 8.49182C7.03037 8.49182 5.96875 9.41558 5.96875 10.5553C5.96875 11.1731 6.28191 11.725 6.77358 12.1029V12.1059L6.7861 12.1149C6.88318 12.1868 6.98653 12.2528 7.09613 12.3128L17.1956 18.8451Z"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M6.12885 19.749L5.20815 19.734C4.55364 19.722 4.03066 19.2061 4.04319 18.5763L4.09956 15.4241C4.11208 14.7973 4.65072 14.2964 5.30836 14.3084L6.22906 14.3234C6.88357 14.3354 7.40655 14.8513 7.39402 15.4781L7.33765 18.6303C7.322 19.2601 6.78336 19.761 6.12885 19.749Z"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M17.5415 10.7943L16.6709 31.0239L24.3684 26.7531C25.311 26.2312 25.8967 25.2715 25.9154 24.2278L26.0877 13.0287L17.5415 10.7943Z"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M16.6708 31.0245L2.46261 38.8734C1.80497 39.2363 0.987616 38.7714 1.00014 38.0456L1.61707 8.55146L2.99499 7.86463C3.35826 7.68468 3.75597 7.57372 4.16308 7.54073L8.81667 7.16583C8.81667 7.16583 14.986 10.126 17.5382 10.7919"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M1.61719 8.55595L1.72679 3.87418C1.72679 3.87418 6.17683 2.53955 8.81679 2.53955"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M8.82031 2.53559L25.2676 1H28.6779C29.4076 1 29.9995 1.56684 29.9995 2.26566V8.14709C29.9995 8.8459 29.4076 9.41276 28.6779 9.41276H27.3533C26.6549 9.41276 26.0881 9.95561 26.0881 10.6244V13.0298"
+		stroke="currentColor"
+		stroke-width="0.8"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+</svg>

@@ -14,10 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "types": ["jest", "node",  "@testing-library/jest-dom"],
     "paths": {
       "@typescript-monorepo/nest-core": ["nest-core/src/index.ts"],
       "@typescript-monorepo/ui": ["ui/src/index.ts"]
-    }
+    },
+    "typeRoots": ["./@types", "./node_modules/@types"]
   },
-  "exclude": ["node_modules", "tmp"]
+  "files": [
+    "./@types/styled-components.d.ts",
+  ],
+  "exclude": ["node_modules", "tmp"],
+  "include": ["./testing/setupTest.ts"]
 }

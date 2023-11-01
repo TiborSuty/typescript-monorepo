@@ -1,5 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import { GetUsersQuery } from '../__generated__/graphql';
+import { FoundationProvider } from '../../../../libs/ui/src/components/providers/FoundationProvider/FoundationProvider';
+import { Button } from '../../../../libs/ui/src/components/Button/Button';
 
 const GET_USERS = gql(`
   query getUsers {
@@ -17,7 +19,12 @@ export function App() {
     return <div>Loading...</div>;
   }
 
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <FoundationProvider>
+      <Button title="Test" />
+      <div>{JSON.stringify(data)}</div>
+    </FoundationProvider>
+  );
 }
 
 export default App;
