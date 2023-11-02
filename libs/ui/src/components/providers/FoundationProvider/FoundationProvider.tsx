@@ -5,6 +5,8 @@ import { ReactNode, useEffect, useMemo } from 'react';
 import { mergeDeepRight } from 'ramda';
 import { DeviceProvider } from '../DeviceProvider/DeviceProvider';
 import { DefaultFoundationTheme, foundationTheme } from '../../../theme/theme';
+import { LocaleProvider } from '../../LocaleProvider/LocaleProvider';
+import { TranslationProvider } from '../TranslationProvider/TranslationProvider';
 
 export type FoundationProviderProps = {
   theme?: Record<string, unknown>;
@@ -30,7 +32,11 @@ export function FoundationProvider(props: FoundationProviderProps) {
     // Turn off because of chakra theme - remove when chakra is gone
     // eslint-disable-next-line no-restricted-syntax
     <ThemeProvider theme={mergedTheme as unknown as DefaultTheme}>
-      <DeviceProvider>{props.children}</DeviceProvider>
+      <TranslationProvider>
+        <LocaleProvider>
+          <DeviceProvider>{props.children}</DeviceProvider>
+        </LocaleProvider>
+      </TranslationProvider>
     </ThemeProvider>
   );
 }

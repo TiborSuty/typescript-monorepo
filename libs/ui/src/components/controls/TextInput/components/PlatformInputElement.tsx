@@ -5,14 +5,15 @@
  */
 
 /* eslint-disable eag/no-css-property */
-import {css, useTheme} from 'styled-components';
+import { css, useTheme } from 'styled-components';
 
-import {ChangeEvent, ForwardedRef, forwardRef} from 'react';
+import { ChangeEvent, ForwardedRef, forwardRef } from 'react';
 
-import {Nullish, suffixTestId, TestIdProps} from 'shared';
-
-import {FormControlProps} from '../../../types/FormControlProps';
-import {HTMLAutocomplete} from '../HTMLAutocomplete';
+import { HTMLAutocomplete } from '../HTMLAutocomplete';
+import { FormControlProps } from '../../../../types/FormControlProps';
+import { TestIdProps } from '../../../../types/TestIdProps';
+import { Nullish } from '../../../../types/Nullish';
+import { suffixTestId } from '../../../../utils/suffixTestId';
 
 export interface NativeInputElementProps
   extends FormControlProps<string | null, HTMLInputElement>,
@@ -69,7 +70,8 @@ export function PlatformInputElementComponent(
 
         :-webkit-autofill,
         :-webkit-autofill:focus {
-          -webkit-box-shadow: 0 0 0 300px ${theme.colors.palettes.yellow[20][100]} inset,
+          -webkit-box-shadow: 0 0 0 300px
+              ${theme.colors.palettes.yellow[20][100]} inset,
             0 0 0 100px ${theme.colors.palettes.yellow[20][100]};
           -webkit-text-fill-color: ${theme.colors.text.primary};
         }

@@ -9,7 +9,6 @@ import { Show } from '../Show/Show';
 import { Space } from '../layout/Space/Space';
 import { Link } from '../Link/Link';
 import { Text } from '../Text/Text';
-import { Icon } from '../Icon/Icon';
 
 export interface LabelProps extends TestIdProps {
   children: string | Nullish;
@@ -37,11 +36,11 @@ export function Label(props: LabelProps) {
               {`${props.isRequired ? REQUIRED_INDICATOR : ''}${props.children}`}
             </Text>
           </label>
-          <Show when={props.tooltip}>
-            <Tooltip description={props.tooltip}>
-              <Icon value="action/help" color="text.secondary" size={4} />
-            </Tooltip>
-          </Show>
+          {/*<Show when={props.tooltip}>*/}
+          {/*  <Tooltip description={props.tooltip}>*/}
+          {/*    <Icon value="action/help" color="text.secondary" size={4} />*/}
+          {/*  </Tooltip>*/}
+          {/*</Show>*/}
         </HStack>
         <Show when={props.isCounterVisible}>
           <Text size="xSmall" color="secondary" noWrap>

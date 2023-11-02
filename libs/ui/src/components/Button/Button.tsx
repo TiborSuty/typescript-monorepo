@@ -191,7 +191,7 @@ const variants: Record<ButtonVariant, ReturnType<typeof css>> = {
   // eslint-disable-next-line eag/no-css-property
   link: css`
     background: ${({ theme }) => theme.colors.general.transparent};
-    color: ${({ theme }) => theme.components.Button.variants.link.color};
+    // color: ${({ theme }) => theme.components?.Button?.variants.link.color};
     border-radius: 0;
     padding: 0 !important;
 

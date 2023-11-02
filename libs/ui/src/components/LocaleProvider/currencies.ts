@@ -1,0 +1,28 @@
+import {Currency} from '../../types/Currency';
+
+export const currencies: Currency[] = [
+  {code: 'EUR', name: 'Euro', symbol: '€', preferred: false},
+  {code: 'AMD', name: 'Armenian Dram', symbol: '֏', preferred: false},
+  {code: 'AZN', name: 'Azerbaijanian Manat', symbol: '₼', preferred: false},
+  {code: 'BAM', name: 'Convertible Mark', symbol: 'KM', preferred: false},
+  {code: 'BGN', name: 'Bulgarian Lev', symbol: 'лв.', preferred: false},
+  {code: 'HRK', name: 'Croatian Kuna', symbol: 'kn', preferred: false},
+  {code: 'CZK', name: 'Czech crown', symbol: 'Kč', preferred: false},
+  {code: 'DKK', name: 'Danish Krone', symbol: 'kr', preferred: false},
+  {code: 'GEL', name: 'Lari', symbol: '₾', preferred: false},
+  {code: 'GBP', name: 'Pound Sterling', symbol: '£', preferred: false},
+  {code: 'ISK', name: 'Iceland Krona', symbol: 'kr', preferred: false},
+  {code: 'CHF', name: 'Swiss Franc', symbol: 'Fr.', preferred: false},
+  {code: 'MKD', name: 'Denar', symbol: 'ден', preferred: false},
+  {code: 'MDL', name: 'Moldovan Leu', symbol: 'L', preferred: false},
+  {code: 'NOK', name: 'Norwegian Krone', symbol: 'kr', preferred: false},
+  {code: 'PLN', name: 'Zloty', symbol: 'zł', preferred: false},
+  {code: 'RON', name: 'New Romanian Leu', symbol: 'Lei', preferred: false},
+  {code: 'RUB', name: 'Russian Ruble', symbol: '₽', preferred: false},
+  {code: 'RSD', name: 'Serbian Dinar', symbol: 'din.', preferred: false},
+  {code: 'SEK', name: 'Swedish Krona', symbol: 'kr', preferred: false},
+  {code: 'TRY', name: 'Turkish Lira', symbol: '₺', preferred: false},
+  {code: 'UAH', name: 'Hryvnia', symbol: '₴', preferred: false},
+  {code: 'USD', name: 'United States dollar', symbol: '$', preferred: false},
+  {code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft', preferred: false},
+];

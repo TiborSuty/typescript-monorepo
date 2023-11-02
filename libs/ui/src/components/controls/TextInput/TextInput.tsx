@@ -13,6 +13,8 @@ import { Icon } from '../../Icon/Icon';
 import { Text } from '../../Text/Text';
 import { VStack } from '../../layout/VStack/VStack';
 import { Space } from '../../layout/Space/Space';
+import { Label } from '../../Label/Label';
+import { HelperText } from '../../HelperText/HelperText';
 
 export interface TextInputProps
   extends FormControlProps<string | null>,

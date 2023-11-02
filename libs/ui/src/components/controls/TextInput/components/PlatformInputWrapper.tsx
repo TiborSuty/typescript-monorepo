@@ -1,9 +1,9 @@
-import {getSize} from 'platform/foundation';
-import {css, useTheme} from 'styled-components';
+import { css, useTheme } from 'styled-components';
 
-import {ForwardedRef, ReactNode, forwardRef} from 'react';
-
-import {Nullish, TestIdProps} from 'shared';
+import { ForwardedRef, ReactNode, forwardRef } from 'react';
+import { Nullish } from '../../../../types/Nullish';
+import { TestIdProps } from '../../../../types/TestIdProps';
+import { getSize } from '../../../../utils/getSize';
 
 export interface PlatformInputWrapperProps extends TestIdProps {
   children: ReactNode;
