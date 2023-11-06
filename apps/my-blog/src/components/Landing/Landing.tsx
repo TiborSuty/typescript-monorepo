@@ -1,14 +1,12 @@
+import { Button } from '../../../../../libs/ui/src/components/Button/Button';
+import { Form } from '../../../../../libs/ui/src/components/controls/Form/Form';
+import { Box } from '../../../../../libs/ui/src/components/layout/Box/Box';
+import { FormField } from '../../../../../libs/ui/src/components/controls/FormField/FormField';
+import { Space } from '../../../../../libs/ui/src/components/layout/Space/Space';
+import { ButtonGroup } from '../../../../../libs/ui/src/components/ButtonGroup/ButtonGroup';
+import { FormButton } from '../../../../../libs/ui/src/components/controls/FormButton/FormButton';
 import { gql, useQuery } from '@apollo/client';
-import { GetUsersQuery } from '../__generated__/graphql';
-import { FoundationProvider } from '../../../../libs/ui/src/components/providers/FoundationProvider/FoundationProvider';
-import { Button } from '../../../../libs/ui/src/components/Button/Button';
-
-import { Space } from '../../../../libs/ui/src/components/layout/Space/Space';
-import { Form } from '../../../../libs/ui/src/components/controls/Form/Form';
-import { FormField } from '../../../../libs/ui/src/components/controls/FormField/FormField';
-import { ButtonGroup } from '../../../../libs/ui/src/components/ButtonGroup/ButtonGroup';
-import { Box } from '../../../../libs/ui/src/components/layout/Box/Box';
-import { FormButton } from '../../../../libs/ui/src/components/controls/FormButton/FormButton';
+import { GetUsersQuery } from '../../__generated__/graphql';
 
 const GET_USERS = gql(`
   query getUsers {
@@ -19,7 +17,7 @@ const GET_USERS = gql(`
   }
 `);
 
-export function App() {
+export const Landing = () => {
   const { loading, data } = useQuery<GetUsersQuery>(GET_USERS);
 
   if (loading) {
@@ -31,7 +29,8 @@ export function App() {
   };
 
   return (
-    <FoundationProvider>
+    <div>
+      <h1>Landing</h1>
       <Button title="Test" />
       <div>{JSON.stringify(data)}</div>
 
@@ -56,8 +55,6 @@ export function App() {
           );
         }}
       </Form>
-    </FoundationProvider>
+    </div>
   );
-}
-
-export default App;
+};

@@ -1,9 +1,11 @@
 import * as ReactDOM from 'react-dom/client';
 
-import App from './app/app';
+import App from './app';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 
 import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev';
+import { FoundationProvider } from '../../../libs/ui/src/components/providers/FoundationProvider/FoundationProvider';
 
 loadDevMessages();
 loadErrorMessages();
@@ -17,7 +19,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+  <BrowserRouter>
+    <ApolloProvider client={client}>
+      <FoundationProvider>
+        <App />
+      </FoundationProvider>
+    </ApolloProvider>
+  </BrowserRouter>
 );
